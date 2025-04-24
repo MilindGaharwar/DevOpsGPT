@@ -17,9 +17,9 @@ st.set_page_config(
 if 'openai_client' not in st.session_state:
     try:
         st.session_state.openai_client = openai.AzureOpenAI(
-            api_key="d2fc3cb33a1046b5936b9d9995322f2d",
+            api_key=st.secrets["AZURE_OPENAI_KEY"],
             api_version="2024-08-01-preview",
-            azure_endpoint="https://idpoai.openai.azure.com"
+            azure_endpoint=st.secrets["AZURE_OPENAI_ENDPOINT"]
         )
     except Exception as e:
         st.error(f"Error initializing OpenAI client: {str(e)}")

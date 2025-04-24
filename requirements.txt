@@ -1,8 +1,8 @@
-streamlit
-openai
-python-dotenv
-pyyaml
-python-docx
-PyPDF2
-psutil
-plotly
+streamlit==1.31.0
+openai==1.76.0
+python-dotenv==1.0.0
+pyyaml==6.0.1
+python-docx==1.1.2
+PyPDF2==3.0.1
+psutil==5.9.6
+plotly==6.0.1
