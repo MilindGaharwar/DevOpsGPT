@@ -2,14 +2,19 @@ services:
   - type: web
     name: devops-agent
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run Home.py
+    startCommand: bash start.sh
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: STREAMLIT_SERVER_PORT
-        value: 8501
+        value: 10000
       - key: STREAMLIT_SERVER_ADDRESS
         value: 0.0.0.0
       - key: STREAMLIT_SERVER_HEADLESS
         value: true
+      - key: AZURE_OPENAI_KEY
+        value: d2fc3cb33a1046b5936b9d9995322f2d
+      - key: AZURE_OPENAI_ENDPOINT
+        value: https://idpoai.openai.azure.com
