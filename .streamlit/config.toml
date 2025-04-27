@@ -1,13 +1,13 @@
 [server]
-port = 10000
-address = "127.0.0.1"
+port = 8501
+address = "0.0.0.0"
 headless = true
 enableCORS = false
 enableXsrfProtection = false
 
 [browser]
-serverAddress = "127.0.0.1"
-serverPort = 10000
+serverAddress = "0.0.0.0"
+serverPort = 8501
 gatherUsageStats = false
 
 [theme]
