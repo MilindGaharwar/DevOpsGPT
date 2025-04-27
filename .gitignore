@@ -1,5 +1,6 @@
 # Environment variables
 .env
+.streamlit/secrets.toml
 
 # Python
 __pycache__/
@@ -35,3 +36,8 @@ wheels/
 
 # Logs
 *.log
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/credentials.toml
+.streamlit/config.toml

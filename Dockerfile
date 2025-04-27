@@ -9,5 +9,10 @@ COPY . .
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
+ENV STREAMLIT_SERVER_PORT=8501
+ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
+ENV STREAMLIT_SERVER_HEADLESS=true
 
-CMD ["uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8501
+
+CMD ["streamlit", "run", "Home.py"]

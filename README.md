@@ -16,23 +16,34 @@ An autonomous DevOps agent integrated with Azure OpenAI for automated software d
 ## Setup
 
 1. Clone the repository
-2. Create a `.env` file with your Azure OpenAI credentials:
+2. Create a `.streamlit/secrets.toml` file with your Azure OpenAI credentials:
+   ```toml
+   AZURE_OPENAI_KEY = "your_key_here"
+   AZURE_OPENAI_ENDPOINT = "your_endpoint_here"
+   AZURE_OPENAI_API_VERSION = "2024-08-01-preview"
    ```
-   AZURE_OPENAI_KEY=your_key_here
-   AZURE_OPENAI_ENDPOINT=your_endpoint_here
-   ```
-3. Build the Docker container:
+3. Install dependencies:
    ```bash
-   docker build -t devops-agent .
+   pip install -r requirements.txt
    ```
-4. Run the agent and dashboard:
+4. Run the application:
    ```bash
-   python run.py
+   streamlit run Home.py
    ```
-   This will start:
-   - FastAPI server on http://localhost:8000
-   - Streamlit dashboard on http://localhost:8501
-   - Prometheus metrics on http://localhost:9090
+
+## Deployment to Streamlit.io
+
+1. Push your code to a GitHub repository
+2. Go to [Streamlit.io](https://streamlit.io)
+3. Sign in with your GitHub account
+4. Click "New app"
+5. Select your repository and specify:
+   - Main file path: `Home.py`
+   - Branch: `main` (or your preferred branch)
+6. Add the following secrets in Streamlit.io's secrets management:
+   - `AZURE_OPENAI_KEY`: Your Azure OpenAI API key
+   - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL
+   - `AZURE_OPENAI_API_VERSION`: "2024-08-01-preview"
 
 ## Usage
 
@@ -52,6 +63,7 @@ curl -X POST http://localhost:8000/execute \
 
 ## Security
 
-- All operations run in an isolated Docker container
-- Secure handling of Azure OpenAI credentials
-- Limited file system access through volume mounting
+- All operations run in an isolated environment
+- Secure handling of Azure OpenAI credentials through Streamlit secrets
+- Limited file system access
+- Environment variables and secrets are properly managed
