@@ -16,13 +16,18 @@ st.set_page_config(
 # Initialize OpenAI client
 if 'openai_client' not in st.session_state:
     try:
-        st.session_state.openai_client = openai.AzureOpenAI(
+        from openai import AzureOpenAI
+        st.session_state.openai_client = AzureOpenAI(
             api_key=st.secrets["AZURE_OPENAI_KEY"],
-            api_version="2024-08-01-preview",
+            api_version=st.secrets["AZURE_OPENAI_API_VERSION"],
             azure_endpoint=st.secrets["AZURE_OPENAI_ENDPOINT"]
         )
     except Exception as e:
         st.error(f"Error initializing OpenAI client: {str(e)}")
+        st.write("Debug info:")
+        st.write(f"Key exists: {'AZURE_OPENAI_KEY' in st.secrets}")
+        st.write(f"Endpoint exists: {'AZURE_OPENAI_ENDPOINT' in st.secrets}")
+        st.write(f"API version: {st.secrets.get('AZURE_OPENAI_API_VERSION', 'Not found')}")
 
 # Initialize session state
 if 'messages' not in st.session_state:
@@ -105,7 +110,7 @@ with col1:
                 ]
                 
                 response = st.session_state.openai_client.chat.completions.create(
-                    model="gpt-4o",  # deployment name
+                    model="gpt-4.1",  # Exact deployment name from Azure OpenAI
                     messages=messages,
                     temperature=0.7,
                     max_tokens=800,
